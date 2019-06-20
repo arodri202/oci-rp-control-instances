@@ -52,7 +52,6 @@ Pre-requisites:
   ```
   Allow dynamic-group <your dynamic group name> to manage instance-family in compartment <your compartment name>
   Allow group <your group name> to manage instance-family in compartment <your compartment name>
-
   ```
 
   e.g.
@@ -182,7 +181,9 @@ Writing the Function
 
     return resp
   ```
-  Here we are creating a [ComputeClient](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html) from the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html), which allows us to connect to OCI with the provider's data we get from Resource Principal and it allows us to make a call to compute services to get a list of all of our instances. We then call `instance_action` which takes in an instance id and a state, and sends a request to that instance to trigger the passed in state. For more information about instance_action and lifecycle_states, click [here.](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html?highlight=instance_action)
+  Here we are creating a [ComputeClient](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html) from the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html), which allows us to connect to OCI with the provider's data we get from Resource Principal and it allows us to make a call to compute services to get a list of all of our instances. We then call `instance_action` which takes in an instance id and a state, and sends a request to that instance to trigger the passed in state.
+
+  For more information about `instance_action` and `lifecycle_states`, click [here.](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html?highlight=instance_action)
 
 ### Command Line Usage
   If you want to be able to invoke this function from the command line, copy and paste this at the bottom of your code.
@@ -228,4 +229,6 @@ Test
   ```
   fn invoke resource-principal control-instances
   ```
-  Upon success, you should see all of the instances in your compartment appear in your terminal. You can also check your instance's state by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in) and navigating to Core Infrastructure > Compute > Instances
+  Upon success, you should see all of the instances in your compartment appear in your terminal.
+
+  You can also check your instance's state by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in) and navigating to Core Infrastructure > Compute > Instances
