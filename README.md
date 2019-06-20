@@ -1,6 +1,6 @@
-# Resource Principle Function to Stop or Start all Instances in the Calling Compartment.
+# Resource Principal Function to Stop or Start all Instances in the Calling Compartment.
 
-  This function uses Resource Principles to securely receive information about the user's information from OCI and controls the state of all instances within the compartment that calls the function.
+  This function uses Resource Principal to securely receive information about the user's information from OCI and controls the state of all instances within the compartment that calls the function.
 
   Uses the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html) to create a client that receive user information when called in the OCI or a valid config file exists.
 
@@ -100,7 +100,7 @@ Create application
 
   e.g.
   ```
-  fn create app resource-principles --annotation oracle.com/oci/subnetIds=["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
+  fn create app resource-principal --annotation oracle.com/oci/subnetIds=["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
   ```
 
 Writing the Function
@@ -138,7 +138,7 @@ Writing the Function
   ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAVZV2VFERD3EIXHJ2S5BP6DW)
   ```python
   def handler(ctx, data: io.BytesIO=None):
-      provider = rp.ResourceprincipleProvider() # initialized provider here
+      provider = rp.ResourcePrincipalProvider() # initialized provider here
       resp = do(provider)
       return response.Response(
           ctx, response_data=json.dumps(resp),
@@ -182,7 +182,7 @@ Writing the Function
 
     return resp
   ```
-  Here we are creating a [ComputeClient](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html) from the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html), which allows us to connect to OCI with the provider's data we get from Resource Principles and it allows us to make a call to compute services to get a list of all of our instances. We then call `instance_action` which takes in an instance id and a state, and sends a request to that instance to trigger the passed in state. For more information about instance_action and lifecycle_states, click [here.](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html?highlight=instance_action)
+  Here we are creating a [ComputeClient](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html) from the [OCI Python SDK](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/index.html), which allows us to connect to OCI with the provider's data we get from Resource Principal and it allows us to make a call to compute services to get a list of all of our instances. We then call `instance_action` which takes in an instance id and a state, and sends a request to that instance to trigger the passed in state. For more information about instance_action and lifecycle_states, click [here.](https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/api/core/client/oci.core.ComputeClient.html?highlight=instance_action)
 
 ### Command Line Usage
   If you want to be able to invoke this function from the command line, copy and paste this at the bottom of your code.
@@ -191,7 +191,7 @@ Writing the Function
   ```python
   def main():
       # If run from the command-line, fake up the provider by using stock user credentials
-      provider = rp.MockResourceprincipleProvider()
+      provider = rp.MockResourcePrincipalProvider()
       resp = do(provider)
       print((resp))
       print(json.dumps(resp))
@@ -213,7 +213,7 @@ Test
   e.g.
 
   ```
-  fn -v deploy --app resource-principles
+  fn -v deploy --app resource-principal
   ```
 
 ### Invoke the function
@@ -226,6 +226,6 @@ Test
   e.g.
 
   ```
-  fn invoke resource-principles control-instances
+  fn invoke resource-principal control-instances
   ```
   Upon success, you should see all of the instances in your compartment appear in your terminal. You can also check your instance's state by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in) and navigating to Core Infrastructure > Compute > Instances
