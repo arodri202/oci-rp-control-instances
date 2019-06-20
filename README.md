@@ -230,5 +230,4 @@ Test
   fn invoke resource-principal control-instances
   ```
   Upon success, you should see all of the instances in your compartment appear in your terminal.
-
   You can also check your instance's state by logging on to [cloud.oracle.com](https://cloud.oracle.com/en_US/sign-in) and navigating to Core Infrastructure > Compute > Instances
