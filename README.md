@@ -99,7 +99,7 @@ Create application
 
   e.g.
   ```
-  fn create app resource-principal --annotation oracle.com/oci/subnetIds=["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
+  fn create app resource-principal --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
   ```
 
 Writing the Function
