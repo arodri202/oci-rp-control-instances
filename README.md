@@ -121,7 +121,6 @@ Writing the Function
   import io
   import json
   import sys
-  import importlib
   from fdk import response
 
   import oci.core

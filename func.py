@@ -1,13 +1,10 @@
+# Copyright (c) 2016, 2018, Oracle and/or its affiliates.  All rights reserved.
 import io
 import json
-import sys
-import importlib
 from fdk import response
 
 import oci.core
 
-sys.path.append(".")
-import rp
 
 def handler(ctx, data: io.BytesIO=None):
     provider = rp.ResourcePrincipalProvider() # initialized provider here
