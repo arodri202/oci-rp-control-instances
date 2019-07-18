@@ -70,6 +70,7 @@ Pre-requisites:
 Create application
 ------------------
  1. Create an Application that is connected to Oracle Functions
+
   ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAQ534QXEF2JHIDUZRS5BP632)
   ```
   fn create app <app-name> --annotation oracle.com/oci/subnetIds='["<subnet-ocid>"]'
@@ -80,12 +81,15 @@ Create application
   ```
   fn create app resource-principal --annotation oracle.com/oci/subnetIds='["ocid1.subnet.oc1.phx.aaaaaaaacnh..."]'
   ```
-  ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAQ534QXEF2JHIDUZRS5BP632)
   2. Clone this repository in a separate directory
+
+  ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAQ534QXEF2JHIDUZRS5BP632)
   ```
   git clone https://github.com/arodri202/oci-rp-control-instances.git
   ```
   3. Change to the correct directory where you cloned this example.
+
+  ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAQ534QXEF2JHIDUZRS5BP632)
   ```
   cd oci-rp-control-instances
   ```
@@ -108,13 +112,15 @@ Test
 
   ![user input icon](https://raw.githubusercontent.com/arodri202/oci-rp-control-instances/master/images/userinput.png?token=AK4AYAQ534QXEF2JHIDUZRS5BP632)
   ```
-  fn invoke <your app name> <your function name>
+  echo -n '{"compartment": "<compartment name>", "instance": "<instance name>", \
+  "action": "<action type>"}' | fn invoke --app <app name> <function name>
   ```
 
   e.g.
 
   ```
-  fn invoke resource-principal control-instances
+  echo -n '{"compartment": "test-compartment", "instance": "test-instance", \
+  "action": "STOP"}' | fn invoke --app resource-principal control-instances
   ```
   Upon success, you should see the name of the instance passed in as well as it's current lifecycle_state.
 
